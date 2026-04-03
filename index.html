@@ -1,0 +1,96 @@
+<!DOCTYPE html><html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bake With Sakthi</title>
+<style>
+body { font-family: Arial; margin:0; background:#f5e6da; }
+header { background:#6b3e26; color:white; padding:15px; text-align:center; }
+.container { padding:20px; }
+.login-box { max-width:300px; margin:auto; background:white; padding:20px; border-radius:10px; }
+input, button, select { width:100%; padding:10px; margin:10px 0; }
+.menu { display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:20px; align-items:stretch; }
+.card { background:white; padding:15px; border-radius:10px; text-align:center; box-shadow:0 2px 8px rgba(0,0,0,0.1); display:flex; flex-direction:column; justify-content:space-between; }
+.card img { height:150px; object-fit:cover; }
+.card button { margin-top:10px; background:#6b3e26; color:white; border:none; border-radius:5px; padding:10px; cursor:pointer; }
+.card button:hover { background:#8b5a3c; }
+.card button { background:#6b3e26; color:white; border:none; border-radius:5px; cursor:pointer; }
+.card button:hover { background:#8b5a3c; }
+img { width:100%; border-radius:10px; }
+.footer { text-align:center; padding:20px; background:#6b3e26; color:white; }
+.hidden { display:none; }
+.cart { background:white; padding:15px; margin-top:20px; border-radius:10px; }
+</style>
+</head>
+<body><header>
+<h1>Bake With Sakthi</h1>
+<p>Luxury Brownies</p>
+</header><div class="container"><div id="login" class="login-box">
+<h2>Login</h2>
+<input type="text" placeholder="Username" id="user">
+<input type="password" placeholder="Password" id="pass">
+<button onclick="login()">Login</button>
+</div><div id="main" class="hidden">
+<h2>Our Menu</h2>
+<div class="menu"><div class="card"><img src="C:\Users\Priya\OneDrive\Desktop\bb1.jpg" alt="brownie"><br><h3>Classic Fudgy Brownie</h3><p>₹229</p><button onclick="addToCart('Classic Fudgy Brownie',229)">Buy</button></div>
+<div class="card"><img src="C:\Users\Priya\OneDrive\Desktop\bb2.webp" alt="brownie"><br><h3>Kitkat Brownie</h3><p>₹249</p><button onclick="addToCart('Kitkat Brownie',249)">Buy</button></div>
+<div class="card"><img src="C:\Users\Priya\OneDrive\Desktop\bb3.jpg" alt="brownie"><br><h3>Oreo Brownie</h3><p>₹249</p><button onclick="addToCart('Oreo Brownie',249)">Buy</button></div>
+<div class="card"><img src="C:\Users\Priya\OneDrive\Desktop\bb4.jpg" alt="brownie"><br><h3>Double Chocolate</h3><p>₹329</p><button onclick="addToCart('Double Chocolate',329)">Buy</button></div>
+<div class="card"><img src="C:\Users\Priya\OneDrive\Desktop\bb5.jpg" alt="brownie"><br><h3>Triple Chocolate</h3><p>₹329</p><button onclick="addToCart('Triple Chocolate',329)">Buy</button></div>
+<div class="card"><img src="C:\Users\Priya\OneDrive\Desktop\bb6.jpg" alt="brownie"><br><h3>Nutella Brownie</h3><p>₹249</p><button onclick="addToCart('Nutella Brownie',249)">Buy</button></div>
+<div class="card"><img src="C:\Users\Priya\OneDrive\Desktop\bb7.jpg"alt="brownie"><br><h3>Choco Chips Brownie</h3><p>₹249</p><button onclick="addToCart('Choco Chips Brownie',249)">Buy</button></div></div><div class="cart">
+<h2>Cart</h2>
+<ul id="cartList"></ul>
+<p><b>Total: ₹<span id="total">0</span></b></p>
+</div><h2>Address</h2>
+<p>nalli layout,uthukadu road,pollachi.</p>
+<h2>contact</h2>
+<p>phone:9597430236</p>
+<h2>Instagram</h2>
+<p>@bakewithsakthi</p><h2>Rating</h2>
+<p>⭐⭐⭐⭐⭐ (5/5)</p><h2>Payment</h2>
+<select id="payment">
+<option>Cash on Delivery</option>
+<option>UPI</option>
+<option>Card</option>
+</select>
+<button onclick="pay()">Pay Now</button><p id="success" class="hidden" style="color:green; font-weight:bold;">Payment Successful ✅</p>
+<div id="invoice" class="hidden cart">
+</div>
+</div>
+</div>
+<div class="footer">
+<p>© Bake With Sakthi</p>
+</div><script>
+let total = 0;
+
+function login(){
+ let user = document.getElementById('user').value;
+ let pass = document.getElementById('pass').value;
+ if(user && pass){
+ document.getElementById('login').style.display='none';
+ document.getElementById('main').classList.remove('hidden');
+ } else {
+ alert('Enter login details');
+ }
+}
+
+function addToCart(item, price){
+ let list = document.getElementById('cartList');
+ let li = document.createElement('li');
+ li.innerText = item + ' - ₹' + price;
+ list.appendChild(li);
+ total += price;
+ document.getElementById('total').innerText = total;
+}
+
+function pay(){
+ if(total === 0){
+ alert('Add items to cart');
+ return;
+ }
+ document.getElementById('success').classList.remove('hidden');
+}
+</script></body>
+</html>
+
